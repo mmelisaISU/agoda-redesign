@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>agoda</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="page-checkout">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <span class="brand-name">agoda</span>
+          <span class="brand-dots"><img src="assets/logo-dots.svg" width="107" height="15" alt="" /></span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Hotels</a>
+          <a href="index.html">Flights</a>
+          <a href="index.html">Cars</a>
+          <a href="index.html">Packages</a>
+          <a href="index.html">More</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn-help" type="button">Help</button>
+          <button class="btn-login" type="button">Login</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="stepper">
+      <div class="step">
+        <div class="step-icon"><img src="assets/step-idle.svg" width="35" height="35" alt="" /><span>1</span></div>
+        Contact
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-icon"><img src="assets/step-idle.svg" width="35" height="35" alt="" /><span>2</span></div>
+        Passenger details
+      </div>
+      <div class="step-line"></div>
+      <div class="step is-current">
+        <div class="step-icon"><img src="assets/step-active.svg" width="35" height="35" alt="" /><span>3</span></div>
+        Payment
+      </div>
+    </div>
+
+    <div class="checkout">
+      <div>
+        <div class="checkout-copy">
+          <h1>Payment</h1>
+          <p>Secure your ticket and enjoy your trip!</p>
+        </div>
+        <form data-payment-form>
+          <div class="panel">
+          <h2>Payment Method</h2>
+          <div class="pay-option">
+            <label class="pay-head">
+              <span class="radio">
+                <img src="assets/radio-empty.svg" width="15" height="15" alt="" />
+                <img class="inner" src="assets/radio-inner.svg" width="10" height="10" alt="" />
+              </span>
+              <input type="radio" name="method" value="paypal" />
+              PayPal
+              <img class="paypal-logo" src="assets/paypal.svg" width="50" height="32" alt="" />
+            </label>
+          </div>
+          <div class="pay-option is-selected">
+            <label class="pay-head">
+              <span class="radio">
+                <img src="assets/radio-outer.svg" width="15" height="15" alt="" />
+                <img class="inner" src="assets/radio-inner.svg" width="10" height="10" alt="" />
+              </span>
+              <input type="radio" name="method" value="card" checked />
+              Credit Card
+              <span class="pay-logos">
+                <img src="assets/visa.svg" width="40" height="40" alt="" />
+                <img src="assets/mastercard.svg" width="40" height="40" alt="" />
+                <img src="assets/discover.svg" width="40" height="40" alt="" />
+                <img src="assets/amex.svg" width="40" height="40" alt="" />
+              </span>
+            </label>
+            <div class="card-fields">
+              <label>
+                <span class="form-label">Card or debit card</span>
+                <input class="form-control" name="cardNumber" type="text" />
+              </label>
+              <div class="form-row">
+                <label class="grow">
+                  <span class="form-label">Name on Card</span>
+                  <input class="form-control" name="cardName" type="text" />
+                </label>
+                <label>
+                  <span class="form-label">Exp date</span>
+                  <input class="form-control" name="exp" type="text" inputmode="numeric" placeholder="MM/YYYY" maxlength="7" autocomplete="off" style="width: 143px" />
+                </label>
+                <label>
+                  <span class="form-label">CVV</span>
+                  <input class="form-control" name="cvv" type="text" style="width: 138px" />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="pay-option">
+            <label class="pay-head">
+              <span class="radio">
+                <img src="assets/radio-empty-2.svg" width="15" height="15" alt="" />
+                <img class="inner" src="assets/radio-inner.svg" width="10" height="10" alt="" />
+              </span>
+              <input type="radio" name="method" value="monthly" />
+              Monthly Payments
+            </label>
+          </div>
+          </div>
+          <div class="checkout-actions">
+            <a class="back-link" href="passenger.html">
+              <img src="assets/arrow-back-thin.svg" width="14" height="13" alt="" />
+              Back
+            </a>
+            <button class="btn-continue" type="submit" disabled>CONFIRM ORDER</button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="summary">
+        <h2>Trip Summary</h2>
+        <img class="summary-photo" src="assets/nyc-summary.png" width="384" height="140" alt="" />
+        <h3>Round Trip to</h3>
+        <p class="city">New York (NYC)</p>
+        <p class="cabin">1 passenger - Economy</p>
+        <div class="leg">
+          <div class="leg-head"><span class="kind">Depart</span><span>10/26/2026</span></div>
+          <div class="leg-times">
+            <div><strong>4:45 AM</strong><span>DSM</span></div>
+            <div class="leg-mid">3 hrs 30 min</div>
+            <div><strong>8:15 AM</strong><span>JFK</span></div>
+          </div>
+        </div>
+        <div class="leg">
+          <div class="leg-head"><span class="kind">Return</span><span>10/31/2026</span></div>
+          <div class="leg-times">
+            <div><strong>4:45 AM</strong><span>DSM</span></div>
+            <div class="leg-mid">3 hrs 30 min</div>
+            <div><strong>8:15 AM</strong><span>JFK</span></div>
+          </div>
+        </div>
+        <div class="price-block">
+          <h2>Price Summary</h2>
+          <div class="price-row"><span data-fare-label>Passengers (1 Adult)</span><span data-fare-amount>$230.00</span></div>
+          <div class="price-row" data-infant-row hidden>
+            <span data-infant-label>2 and under (1)</span><span>Free</span>
+          </div>
+          <div class="price-row"><span>Taxes &amp; Fees</span><span data-tax-amount>$25.00</span></div>
+          <div class="price-row total"><span>Total</span><strong data-total-amount>$255.00</strong></div>
+        </div>
+      </aside>
+    </div>
+    <script src="js/app.js?v=pax-price"></script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>agoda</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="page-checkout">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <span class="brand-name">agoda</span>
+          <span class="brand-dots"><img src="assets/logo-dots.svg" width="107" height="15" alt="" /></span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Hotels</a>
+          <a href="index.html">Flights</a>
+          <a href="index.html">Cars</a>
+          <a href="index.html">Packages</a>
+          <a href="index.html">More</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn-help" type="button">Help</button>
+          <button class="btn-login" type="button">Login</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="stepper">
+      <div class="step is-current">
+        <div class="step-icon"><img src="assets/step-active.svg" width="35" height="35" alt="" /><span>1</span></div>
+        Contact
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-icon"><img src="assets/step-idle.svg" width="35" height="35" alt="" /><span>2</span></div>
+        Passenger details
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-icon"><img src="assets/step-idle.svg" width="35" height="35" alt="" /><span>3</span></div>
+        Payment
+      </div>
+    </div>
+
+    <div class="checkout">
+      <div>
+        <div class="checkout-copy">
+          <h1>Contact Information</h1>
+          <p>We will send your booking information here.</p>
+        </div>
+        <form data-contact-form autocomplete="off">
+          <div class="panel">
+            <h2>Contact details</h2>
+            <div class="form-row">
+              <label class="grow">
+                <span class="form-label">First Name</span>
+                <input class="form-control" name="firstName" type="text" autocomplete="off" required />
+              </label>
+              <label class="grow">
+                <span class="form-label">Last Name</span>
+                <input class="form-control" name="lastName" type="text" autocomplete="off" required />
+              </label>
+            </div>
+            <label>
+              <span class="form-label">Email Address</span>
+              <input class="form-control" name="email" type="email" autocomplete="off" required />
+            </label>
+            <div class="form-row" style="margin-top: 24px">
+              <div class="phone-code-field">
+                <span class="form-label">Phone Number</span>
+                <div class="phone-code-wrap" data-dial-wrap>
+                  <div class="phone-code">
+                    <img data-dial-flag src="assets/flag-us.svg" width="22" height="15" alt="" />
+                    <input
+                      class="phone-code-input"
+                      name="phoneCode"
+                      type="text"
+                      value="+1"
+                      inputmode="tel"
+                      autocomplete="off"
+                      aria-label="International dialing code"
+                      data-dial-input
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                    />
+                  </div>
+                  <div class="phone-code-menu" data-dial-menu hidden role="listbox"></div>
+                </div>
+              </div>
+              <label class="grow">
+                <span class="form-label" style="visibility: hidden">Phone</span>
+                <input class="form-control" name="phone" type="tel" autocomplete="off" required />
+              </label>
+            </div>
+          </div>
+          <div class="checkout-actions">
+            <a class="back-link" href="flights.html">
+              <img src="assets/arrow-back-thin.svg" width="14" height="13" alt="" />
+              Back
+            </a>
+            <button class="btn-continue wide" type="submit" disabled>
+              Continue to passenger details
+              <img src="assets/arrow-continue-thin.svg" width="14" height="13" alt="" />
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <aside class="summary">
+        <h2>Trip Summary</h2>
+        <img class="summary-photo" src="assets/nyc-summary.png" width="384" height="140" alt="" />
+        <h3>Round Trip to</h3>
+        <p class="city">New York (NYC)</p>
+        <p class="cabin">1 passenger - Economy</p>
+        <div class="leg">
+          <div class="leg-head"><span class="kind">Depart</span><span>10/26/2026</span></div>
+          <div class="leg-times">
+            <div><strong>4:45 AM</strong><span>DSM</span></div>
+            <div class="leg-mid">3 hrs 30 min</div>
+            <div><strong>8:15 AM</strong><span>JFK</span></div>
+          </div>
+        </div>
+        <div class="leg">
+          <div class="leg-head"><span class="kind">Return</span><span>10/31/2026</span></div>
+          <div class="leg-times">
+            <div><strong>4:45 AM</strong><span>DSM</span></div>
+            <div class="leg-mid">3 hrs 30 min</div>
+            <div><strong>8:15 AM</strong><span>JFK</span></div>
+          </div>
+        </div>
+        <div class="price-block">
+          <h2>Price Summary</h2>
+          <div class="price-row"><span data-fare-label>Passengers (1 Adult)</span><span data-fare-amount>$230.00</span></div>
+          <div class="price-row" data-infant-row hidden>
+            <span data-infant-label>2 and under (1)</span><span>Free</span>
+          </div>
+          <div class="price-row"><span>Taxes &amp; Fees</span><span data-tax-amount>$25.00</span></div>
+          <div class="price-row total"><span>Total</span><strong data-total-amount>$255.00</strong></div>
+        </div>
+      </aside>
+    </div>
+    <script src="js/app.js?v=pax-price"></script>
+  </body>
+</html>

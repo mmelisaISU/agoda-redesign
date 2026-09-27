@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>agoda</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="page-flights">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">
+          <span class="brand-name">agoda</span>
+          <span class="brand-dots"><img src="assets/logo-dots.svg" width="107" height="15" alt="" /></span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Hotels</a>
+          <a href="index.html">Flights</a>
+          <a href="index.html">Cars</a>
+          <a href="index.html">Packages</a>
+          <a href="index.html">More</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn-help" type="button">Help</button>
+          <button class="btn-login" type="button">Login</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero hero--flights">
+      <img class="hero-photo" src="assets/hero-flights.png" alt="" />
+      <div class="hero-copy">
+        <h1 class="hero-title">Find your next destination.</h1>
+        <p class="hero-sub">Find the perfect flight for your next adventure.</p>
+      </div>
+      <form class="search-stack" data-search-form>
+        <div class="search-bar search-bar--solo">
+          <div class="field fly-type">
+            <button class="fly-trigger" type="button" data-fly-trigger>
+              <span data-fly-label>Fly Type</span>
+            </button>
+            <input type="hidden" name="flyType" value="" />
+            <div class="dropdown-menu" data-fly-menu hidden>
+              <button type="button" data-value="Round-Trip">Round-Trip</button>
+              <button type="button" data-value="One-Way">One-Way</button>
+            </div>
+          </div>
+          <div class="field from-field">
+            <input name="from" type="text" placeholder="From" autocomplete="off" data-place-input />
+            <div class="place-menu" data-place-menu hidden></div>
+          </div>
+          <button class="swap-btn" type="button" data-swap aria-label="Switch from and going">
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" aria-hidden="true">
+              <path d="M7 12.5h17.5M20 8l8.5 4.5L20 17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 22.5H10.5M15 18l-8.5 4.5L15 27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="field to-field">
+            <input name="going" type="text" placeholder="Going" autocomplete="off" data-place-input />
+            <div class="place-menu" data-place-menu hidden></div>
+          </div>
+          <div class="field passenger-type">
+            <button class="passenger-trigger" type="button" data-passenger-trigger>
+              <span data-passenger-label>1 Adult</span>
+            </button>
+            <input type="hidden" name="adults" value="1" />
+            <input type="hidden" name="under18" value="0" />
+            <input type="hidden" name="under2" value="0" />
+            <div class="passenger-menu" data-passenger-menu hidden>
+              <div class="passenger-row">
+                <span>Adult</span>
+                <div class="passenger-stepper">
+                  <button type="button" data-passenger-dec="adults" aria-label="Fewer adults">−</button>
+                  <span data-passenger-count="adults">1</span>
+                  <button type="button" data-passenger-inc="adults" aria-label="More adults">+</button>
+                </div>
+              </div>
+              <div class="passenger-row">
+                <span>Under 18</span>
+                <div class="passenger-stepper">
+                  <button type="button" data-passenger-dec="under18" aria-label="Fewer under 18">−</button>
+                  <span data-passenger-count="under18">0</span>
+                  <button type="button" data-passenger-inc="under18" aria-label="More under 18">+</button>
+                </div>
+              </div>
+              <div class="passenger-row">
+                <span>2 and under</span>
+                <div class="passenger-stepper">
+                  <button type="button" data-passenger-dec="under2" aria-label="Fewer 2 and under">−</button>
+                  <span data-passenger-count="under2">0</span>
+                  <button type="button" data-passenger-inc="under2" aria-label="More 2 and under">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="date-fields">
+            <div class="field date-field">
+              <input name="date" type="text" placeholder="Departure Date" autocomplete="off" data-date-input />
+            </div>
+            <div class="field date-field date-field--return" data-return-wrap>
+              <input name="returnDate" type="text" placeholder="Return Date" autocomplete="off" data-return-input />
+            </div>
+            <div class="calendar" data-calendar hidden>
+              <p class="calendar-hint" data-cal-hint>Select a departure date</p>
+              <div class="calendar-head">
+                <button type="button" data-cal-prev aria-label="Previous month">‹</button>
+                <span data-cal-label></span>
+                <button type="button" data-cal-next aria-label="Next month">›</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+              </div>
+              <div class="calendar-grid" data-cal-grid></div>
+            </div>
+          </div>
+          <button class="btn-search" type="submit">Search</button>
+        </div>
+      </form>
+    </section>
+
+    <div class="results">
+    <div class="results-toolbar">
+      <button class="filter-btn" type="button" data-filter-open aria-expanded="false" aria-controls="filter-panel">
+        <img src="assets/filter.svg" width="24" height="24" alt="" />
+        Filter
+      </button>
+      <div class="sort-wrap">
+        <span>Sort By</span>
+        <div class="sort-type">
+          <button class="sort-trigger" type="button" data-sort-trigger>
+            <span data-sort-label>Best Match</span>
+          </button>
+          <div class="dropdown-menu" data-sort-menu hidden>
+            <button type="button" data-value="Best Match">Best Match</button>
+            <button type="button" data-value="Cheapest">Cheapest</button>
+            <button type="button" data-value="Fastest">Fastest</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-backdrop" data-filter-backdrop hidden></div>
+    <aside class="filter-panel" id="filter-panel" role="dialog" aria-labelledby="filter-title" hidden>
+      <div class="filter-panel-head">
+        <h2 id="filter-title">Filter flights</h2>
+        <button class="filter-clear" type="button" data-filter-clear>Clear all</button>
+        <button class="filter-close" type="button" data-filter-close aria-label="Close filters">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <section class="filter-section">
+        <button class="filter-section-toggle" type="button" data-filter-toggle>
+          <span>Stops</span>
+          <img src="assets/chevron.svg" width="14" height="9" alt="" />
+        </button>
+        <div class="filter-section-body">
+          <label class="filter-row">
+            <input type="checkbox" name="stops" value="0" checked />
+            <span>Nonstop</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="stops" value="1" />
+            <span>1 stop</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="stops" value="2" />
+            <span>2+ stops</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <button class="filter-section-toggle" type="button" data-filter-toggle>
+          <span>Price range</span>
+          <img src="assets/chevron.svg" width="14" height="9" alt="" />
+        </button>
+        <div class="filter-section-body">
+          <div class="filter-range">
+            <div class="filter-range-rail"></div>
+            <div class="filter-range-fill" data-range-fill></div>
+            <input type="range" min="100" max="1000" value="100" step="10" data-price-min aria-label="Minimum price" />
+            <input type="range" min="100" max="1000" value="1000" step="10" data-price-max aria-label="Maximum price" />
+          </div>
+          <div class="filter-range-labels">
+            <span>$100</span>
+            <span>$1,000</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <button class="filter-section-toggle" type="button" data-filter-toggle>
+          <span>Airlines</span>
+          <img src="assets/chevron.svg" width="14" height="9" alt="" />
+        </button>
+        <div class="filter-section-body">
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="delta" />
+            <img class="filter-air-logo" src="assets/delta.svg?v=icon" width="22" height="16" alt="" />
+            <span>Delta</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="united" />
+            <img class="filter-air-logo" src="assets/united.png" width="22" height="16" alt="" />
+            <span>United</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="american" />
+            <img class="filter-air-logo" src="assets/american.png?v=icon" width="22" height="16" alt="" />
+            <span>American Airlines</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="southwest" />
+            <img class="filter-air-logo" src="assets/southwest.png" width="22" height="16" alt="" />
+            <span>Southwest</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="jetblue" />
+            <img class="filter-air-logo" src="assets/jetblue.svg" width="22" height="16" alt="" />
+            <span>JetBlue</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="alaska" />
+            <img class="filter-air-logo" src="assets/alaska.png" width="22" height="16" alt="" />
+            <span>Alaska Airlines</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="airline" value="spirit" />
+            <img class="filter-air-logo" src="assets/spirit.png" width="22" height="16" alt="" />
+            <span>Spirit</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <button class="filter-section-toggle" type="button" data-filter-toggle>
+          <span>Departure time</span>
+          <img src="assets/chevron.svg" width="14" height="9" alt="" />
+        </button>
+        <div class="filter-section-body">
+          <label class="filter-row filter-row--time">
+            <input type="checkbox" name="depart" value="morning" />
+            <span>Morning <small>5:00 AM – 11:59 AM</small></span>
+          </label>
+          <label class="filter-row filter-row--time">
+            <input type="checkbox" name="depart" value="afternoon" />
+            <span>Afternoon <small>12:00 PM – 5:59 PM</small></span>
+          </label>
+          <label class="filter-row filter-row--time">
+            <input type="checkbox" name="depart" value="evening" />
+            <span>Evening <small>6:00 PM – 11:59 PM</small></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <button class="filter-section-toggle" type="button" data-filter-toggle>
+          <span>Arrival time</span>
+          <img src="assets/chevron.svg" width="14" height="9" alt="" />
+        </button>
+        <div class="filter-section-body">
+          <label class="filter-row filter-row--time">
+            <input type="checkbox" name="arrive" value="morning" />
+            <span>Morning <small>5:00 AM – 11:59 AM</small></span>
+          </label>
+          <label class="filter-row filter-row--time">
+            <input type="checkbox" name="arrive" value="afternoon" />
+            <span>Afternoon <small>12:00 PM – 5:59 PM</small></span>
+          </label>
+          <label class="filter-row filter-row--time">
+            <input type="checkbox" name="arrive" value="evening" />
+            <span>Evening <small>6:00 PM – 11:59 PM</small></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="filter-section">
+        <button class="filter-section-toggle" type="button" data-filter-toggle>
+          <span>Flight duration</span>
+          <img src="assets/chevron.svg" width="14" height="9" alt="" />
+        </button>
+        <div class="filter-section-body">
+          <label class="filter-row">
+            <input type="checkbox" name="duration" value="any" checked />
+            <span>Any duration</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="duration" value="0-2" />
+            <span>Up to 2 hours</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="duration" value="2-6" />
+            <span>2 – 6 hours</span>
+          </label>
+          <label class="filter-row">
+            <input type="checkbox" name="duration" value="6+" />
+            <span>6+ hours</span>
+          </label>
+        </div>
+      </section>
+    </aside>
+
+    <div class="tickets">
+      <p class="filter-empty" data-filter-empty hidden>No flights match these filters.</p>
+      <article class="ticket" data-stops="0" data-price="230" data-airline="delta" data-depart-hour="4" data-arrive-hour="8" data-duration="210">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <div class="airline">
+              <img src="assets/delta.svg?v=icon" width="96" height="64" alt="" />
+              <span>Delta Airlines</span>
+            </div>
+            <div class="ticket-info">
+              <div class="times">
+                <div class="time-block"><strong>4:45 AM</strong><span>DSM</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 30 min</p>
+                </div>
+                <div class="time-block"><strong>8:15 AM</strong><span>JFK</span></div>
+              </div>
+              <div class="times times-return">
+                <div class="time-block"><strong>5:10 PM</strong><span>JFK</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 30 min</p>
+                </div>
+                <div class="time-block"><strong>8:40 PM</strong><span>DSM</span></div>
+              </div>
+              <div class="baggage">
+                <span class="label">Baggage:</span>
+                <span>Carry-on included</span>
+                <span>Checked bag $45</span>
+                <button class="details-link" type="button" data-details>Details <img src="assets/chevron.svg" width="14" height="9" alt="" /></button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-details">
+            <div class="detail-grid">
+              <div>
+                <h4>Flight</h4>
+                <p>HB 3478</p>
+                <p>AirBus 436</p>
+              </div>
+              <div>
+                <h4>Duration</h4>
+                <p>3 h 30 min</p>
+                <p>Nonstop</p>
+              </div>
+              <div>
+                <h4>Fare Type</h4>
+                <p>Economy, E15</p>
+                <p class="detail-link">Change Fare</p>
+              </div>
+            </div>
+            <div class="detail-route">
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>4:45 AM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>8:15 AM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+              </div>
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>5:10 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>8:40 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <h4>Wi-fi</h4>
+                <p>Avaliable on purchase</p>
+              </div>
+              <div>
+                <h4>In-flight entertainment</h4>
+                <p>Avaliable</p>
+              </div>
+              <div>
+                <h4>Pets</h4>
+                <p>Approved carrier and vaccination required.</p>
+                <p class="detail-link">Add a pet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-side">
+          <div class="price">$230</div>
+          <div class="price-note">round trip</div>
+          <button class="btn-select" type="button" data-select>Select</button>
+        </div>
+      </article>
+
+      <article class="ticket" data-stops="0" data-price="267" data-airline="american" data-depart-hour="11" data-arrive-hour="14" data-duration="220">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <div class="airline">
+              <img src="assets/american.png?v=icon" width="160" height="28" alt="" />
+              <span>American Airlines</span>
+            </div>
+            <div class="ticket-info">
+              <div class="times">
+                <div class="time-block"><strong>11:10 AM</strong><span>DSM</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 40 min</p>
+                </div>
+                <div class="time-block"><strong>2:50 PM</strong><span>JFK</span></div>
+              </div>
+              <div class="times times-return">
+                <div class="time-block"><strong>4:20 PM</strong><span>JFK</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 40 min</p>
+                </div>
+                <div class="time-block"><strong>8:00 PM</strong><span>DSM</span></div>
+              </div>
+              <div class="baggage">
+                <span class="label">Baggage:</span>
+                <span>Carry-on included</span>
+                <span>Checked bag $40</span>
+                <button class="details-link" type="button" data-details>Details <img src="assets/chevron.svg" width="14" height="9" alt="" /></button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-details">
+            <div class="detail-grid">
+              <div>
+                <h4>Flight</h4>
+                <p>AA 2190</p>
+                <p>Airbus A321</p>
+              </div>
+              <div>
+                <h4>Duration</h4>
+                <p>3 h 40 min</p>
+                <p>Nonstop</p>
+              </div>
+              <div>
+                <h4>Fare Type</h4>
+                <p>Economy, G12</p>
+                <p class="detail-link">Change Fare</p>
+              </div>
+            </div>
+            <div class="detail-route">
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>11:10 AM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>2:50 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+              </div>
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>4:20 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>8:00 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <h4>Wi-fi</h4>
+                <p>Avaliable on purchase</p>
+              </div>
+              <div>
+                <h4>In-flight entertainment</h4>
+                <p>Avaliable</p>
+              </div>
+              <div>
+                <h4>Pets</h4>
+                <p>Approved carrier and vaccination required.</p>
+                <p class="detail-link">Add a pet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-side">
+          <div class="price">$267</div>
+          <div class="price-note">round trip</div>
+          <button class="btn-select" type="button" data-select>Select</button>
+        </div>
+      </article>
+
+      <article class="ticket" data-stops="0" data-price="175" data-airline="jetblue" data-depart-hour="19" data-arrive-hour="22" data-duration="215">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <div class="airline">
+              <img src="assets/jetblue.svg" width="160" height="28" alt="" />
+              <span>JetBlue</span>
+            </div>
+            <div class="ticket-info">
+              <div class="times">
+                <div class="time-block"><strong>7:05 PM</strong><span>DSM</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 35 min</p>
+                </div>
+                <div class="time-block"><strong>10:40 PM</strong><span>JFK</span></div>
+              </div>
+              <div class="times times-return">
+                <div class="time-block"><strong>8:15 AM</strong><span>JFK</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 35 min</p>
+                </div>
+                <div class="time-block"><strong>11:50 AM</strong><span>DSM</span></div>
+              </div>
+              <div class="baggage">
+                <span class="label">Baggage:</span>
+                <span>Carry-on included</span>
+                <span>Checked bag $30</span>
+                <button class="details-link" type="button" data-details>Details <img src="assets/chevron.svg" width="14" height="9" alt="" /></button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-details">
+            <div class="detail-grid">
+              <div>
+                <h4>Flight</h4>
+                <p>B6 1511</p>
+                <p>Airbus A320</p>
+              </div>
+              <div>
+                <h4>Duration</h4>
+                <p>3 h 35 min</p>
+                <p>Nonstop</p>
+              </div>
+              <div>
+                <h4>Fare Type</h4>
+                <p>Economy, L20</p>
+                <p class="detail-link">Change Fare</p>
+              </div>
+            </div>
+            <div class="detail-route">
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>7:05 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>10:40 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+              </div>
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>8:15 AM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>11:50 AM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <h4>Wi-fi</h4>
+                <p>Avaliable on purchase</p>
+              </div>
+              <div>
+                <h4>In-flight entertainment</h4>
+                <p>Avaliable</p>
+              </div>
+              <div>
+                <h4>Pets</h4>
+                <p>Approved carrier and vaccination required.</p>
+                <p class="detail-link">Add a pet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-side">
+          <div class="price">$175</div>
+          <div class="price-note">round trip</div>
+          <button class="btn-select" type="button" data-select>Select</button>
+        </div>
+      </article>
+
+      <article class="ticket" data-stops="0" data-price="198" data-airline="united" data-depart-hour="6" data-arrive-hour="9" data-duration="215">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <div class="airline">
+              <img src="assets/united.png" width="160" height="28" alt="" />
+              <span>United Airlines</span>
+            </div>
+            <div class="ticket-info">
+              <div class="times">
+                <div class="time-block"><strong>6:20 AM</strong><span>DSM</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 35 min</p>
+                </div>
+                <div class="time-block"><strong>9:55 AM</strong><span>JFK</span></div>
+              </div>
+              <div class="times times-return">
+                <div class="time-block"><strong>12:40 PM</strong><span>JFK</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 35 min</p>
+                </div>
+                <div class="time-block"><strong>4:15 PM</strong><span>DSM</span></div>
+              </div>
+              <div class="baggage">
+                <span class="label">Baggage:</span>
+                <span>Carry-on included</span>
+                <span>Checked bag $35</span>
+                <button class="details-link" type="button" data-details>Details <img src="assets/chevron.svg" width="14" height="9" alt="" /></button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-details">
+            <div class="detail-grid">
+              <div>
+                <h4>Flight</h4>
+                <p>UA 482</p>
+                <p>Boeing 737</p>
+              </div>
+              <div>
+                <h4>Duration</h4>
+                <p>3 h 35 min</p>
+                <p>Nonstop</p>
+              </div>
+              <div>
+                <h4>Fare Type</h4>
+                <p>Economy, Y14</p>
+                <p class="detail-link">Change Fare</p>
+              </div>
+            </div>
+            <div class="detail-route">
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>6:20 AM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>9:55 AM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+              </div>
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>12:40 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>4:15 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <h4>Wi-fi</h4>
+                <p>Avaliable on purchase</p>
+              </div>
+              <div>
+                <h4>In-flight entertainment</h4>
+                <p>Avaliable</p>
+              </div>
+              <div>
+                <h4>Pets</h4>
+                <p>Approved carrier and vaccination required.</p>
+                <p class="detail-link">Add a pet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-side">
+          <div class="price">$198</div>
+          <div class="price-note">round trip</div>
+          <button class="btn-select" type="button" data-select>Select</button>
+        </div>
+      </article>
+
+      <article class="ticket" data-stops="0" data-price="214" data-airline="alaska" data-depart-hour="13" data-arrive-hour="17" data-duration="220">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <div class="airline">
+              <img src="assets/alaska.png" width="96" height="64" alt="" />
+              <span>Alaska Airlines</span>
+            </div>
+            <div class="ticket-info">
+              <div class="times">
+                <div class="time-block"><strong>1:25 PM</strong><span>DSM</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 40 min</p>
+                </div>
+                <div class="time-block"><strong>5:05 PM</strong><span>JFK</span></div>
+              </div>
+              <div class="times times-return">
+                <div class="time-block"><strong>6:30 PM</strong><span>JFK</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 40 min</p>
+                </div>
+                <div class="time-block"><strong>10:10 PM</strong><span>DSM</span></div>
+              </div>
+              <div class="baggage">
+                <span class="label">Baggage:</span>
+                <span>Carry-on included</span>
+                <span>Checked bag $40</span>
+                <button class="details-link" type="button" data-details>Details <img src="assets/chevron.svg" width="14" height="9" alt="" /></button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-details">
+            <div class="detail-grid">
+              <div>
+                <h4>Flight</h4>
+                <p>AS 736</p>
+                <p>Boeing 737-900</p>
+              </div>
+              <div>
+                <h4>Duration</h4>
+                <p>3 h 40 min</p>
+                <p>Nonstop</p>
+              </div>
+              <div>
+                <h4>Fare Type</h4>
+                <p>Economy, H8</p>
+                <p class="detail-link">Change Fare</p>
+              </div>
+            </div>
+            <div class="detail-route">
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>1:25 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>5:05 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+              </div>
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>6:30 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>10:10 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <h4>Wi-fi</h4>
+                <p>Avaliable on purchase</p>
+              </div>
+              <div>
+                <h4>In-flight entertainment</h4>
+                <p>Avaliable</p>
+              </div>
+              <div>
+                <h4>Pets</h4>
+                <p>Approved carrier and vaccination required.</p>
+                <p class="detail-link">Add a pet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-side">
+          <div class="price">$214</div>
+          <div class="price-note">round trip</div>
+          <button class="btn-select" type="button" data-select>Select</button>
+        </div>
+      </article>
+
+      <article class="ticket" data-stops="0" data-price="129" data-airline="spirit" data-depart-hour="15" data-arrive-hour="18" data-duration="215">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <div class="airline">
+              <img src="assets/spirit.png" width="96" height="64" alt="" />
+              <span>Spirit</span>
+            </div>
+            <div class="ticket-info">
+              <div class="times">
+                <div class="time-block"><strong>3:15 PM</strong><span>DSM</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 35 min</p>
+                </div>
+                <div class="time-block"><strong>6:50 PM</strong><span>JFK</span></div>
+              </div>
+              <div class="times times-return">
+                <div class="time-block"><strong>7:45 AM</strong><span>JFK</span></div>
+                <div class="flight-mid">
+                  <span class="flight-line" aria-hidden="true"></span>
+                  <p>3 hrs 35 min</p>
+                </div>
+                <div class="time-block"><strong>11:20 AM</strong><span>DSM</span></div>
+              </div>
+              <div class="baggage">
+                <span class="label">Baggage:</span>
+                <span>Carry-on included</span>
+                <span>Checked bag $55</span>
+                <button class="details-link" type="button" data-details>Details <img src="assets/chevron.svg" width="14" height="9" alt="" /></button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-details">
+            <div class="detail-grid">
+              <div>
+                <h4>Flight</h4>
+                <p>NK 904</p>
+                <p>Airbus A320neo</p>
+              </div>
+              <div>
+                <h4>Duration</h4>
+                <p>3 h 35 min</p>
+                <p>Nonstop</p>
+              </div>
+              <div>
+                <h4>Fare Type</h4>
+                <p>Economy, K3</p>
+                <p class="detail-link">Change Fare</p>
+              </div>
+            </div>
+            <div class="detail-route">
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>3:15 PM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>6:50 PM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+              </div>
+              <div class="route-stop">
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>7:45 AM</strong>
+                  <p class="route-meta">JFK <span>John F. Kennedy International Airport</span></p>
+                </div>
+                <span class="route-connector" aria-hidden="true"></span>
+                <img class="dot" src="assets/stop-dot.svg" width="20" height="20" alt="" />
+                <div class="route-leg">
+                  <strong>11:20 AM</strong>
+                  <p class="route-meta">DSM <span>Des Moines International Airport</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="detail-grid">
+              <div>
+                <h4>Wi-fi</h4>
+                <p>Avaliable on purchase</p>
+              </div>
+              <div>
+                <h4>In-flight entertainment</h4>
+                <p>Avaliable</p>
+              </div>
+              <div>
+                <h4>Pets</h4>
+                <p>Approved carrier and vaccination required.</p>
+                <p class="detail-link">Add a pet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ticket-side">
+          <div class="price">$129</div>
+          <div class="price-note">round trip</div>
+          <button class="btn-select" type="button" data-select>Select</button>
+        </div>
+      </article>
+      <p class="tickets-more">Show more</p>
+    </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">agoda</div>
+          <img class="brand-dots" src="assets/logo-dots.svg" width="107" height="15" alt="" />
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <p>About Agoda</p>
+          <p>Careers</p>
+          <p>Press</p>
+          <p>Featured Guides</p>
+          <p>Points MAX</p>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <p>Help Center</p>
+          <p>Contact Us</p>
+          <p>FAQ</p>
+          <p>Safety Center</p>
+        </div>
+        <div class="footer-col">
+          <h4>More</h4>
+          <p>Partner with us</p>
+          <p>Agents</p>
+          <p>Travel Guides</p>
+          <p>Mobile App</p>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="socials">
+            <img src="assets/instagram.svg?v=brand" width="32" height="32" alt="Instagram" />
+            <img src="assets/facebook.svg?v=brand" width="32" height="32" alt="Facebook" />
+            <img src="assets/tiktok.svg" width="32" height="32" alt="TikTok" />
+            <img src="assets/x.svg" width="32" height="32" alt="X" />
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Want to know more about travel?</h4>
+          <input class="email-field" type="email" placeholder="Enter Your Email" />
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>2026 Agoda. Rights Resered.</p>
+        <div class="footer-legal">
+          <p>Terms of use</p>
+          <p>Privacy Policy</p>
+          <p>Site Map</p>
+        </div>
+      </div>
+    </footer>
+    <script src="js/app.js?v=pax-price"></script>
+  </body>
+</html>
