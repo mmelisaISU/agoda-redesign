@@ -296,6 +296,7 @@ function bindSearchForm() {
       under18: Number(form.under18?.value) || 0,
       under2: Number(form.under2?.value) || 0,
     });
+    sessionStorage.setItem("agodaFromSearch", "1");
     window.location.href = "flights.html";
   });
 
@@ -669,6 +670,7 @@ function bindTickets() {
         total: fare + taxes,
         destination: "New York (NYC)",
       });
+      sessionStorage.setItem("agodaFromSearch", "1");
       window.location.href = "contact.html";
     });
   });
@@ -1109,6 +1111,7 @@ function bindPayment() {
     event.preventDefault();
     if (form.querySelector(".btn-continue")?.disabled) return;
     saveBooking({ booked: true });
+    sessionStorage.removeItem("agodaFromSearch");
     window.location.href = "index.html";
   });
 }

@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>agoda</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      if (sessionStorage.getItem("agodaFromSearch") !== "1") {
+        location.replace("index.html");
+      }
+    </script>
   </head>
   <body class="page-flights">
     <header class="site-header">
@@ -971,6 +976,6 @@
         </div>
       </div>
     </footer>
-    <script src="js/app.js?v=pax-price"></script>
+    <script src="js/app.js?v=welcome-home"></script>
   </body>
 </html>
