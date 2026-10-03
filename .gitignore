@@ -4,3 +4,6 @@ desktop.ini
 *.log
 .vscode/
 .cursor/
+
+# Local Netlify folder
+.netlify
